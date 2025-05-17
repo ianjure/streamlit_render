@@ -63,7 +63,6 @@ st.altair_chart(sales_over_time_chart, use_container_width=True)
 
 st.subheader("Sales by Product")
 sales_by_product = df.groupby('Product')['Sales'].sum().reset_index()
-sales_by_product = sales_by_product.sort_values(by='Sales', ascending=False)
 sales_by_product_chart = alt.Chart(sales_by_product).mark_bar().encode(
     x=alt.X('Product:N', sort='-y'),
     y='Sales:Q'

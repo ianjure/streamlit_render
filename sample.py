@@ -13,9 +13,8 @@ connection = engine.connect()
 @st.cache_data
 def load_data():
     query_ext = """
-        SELECT "Product", count(*) AS count
-        FROM sales_data_duckdb
-        GROUP BY "Product";
+        SELECT *
+        FROM sales_data_duckdb;
     """
     result = connection.execute(text(query_ext))
     return pd.DataFrame(result.mappings().all())
@@ -24,4 +23,5 @@ df = load_data()
 
 st.title("Sales Dashboard")
 st.subheader("Most bought product")
-st.bar_chart(df.set_index('Product'))
+st.dataframe(df)
+#st.bar_chart(df.set_index('Product'))

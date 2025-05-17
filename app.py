@@ -12,6 +12,12 @@ warehouse = "postgresql://duckdb_sample_user:i6iKJc6FCs4hVS3AX6yMZngxJvMkzGCs@dp
 engine = create_engine(warehouse,  client_encoding='utf8')
 connection = engine.connect()
 
+st.set_page_config(
+    page_title="Sales Dashboard",
+    page_icon=":bar_chart:",
+    layout="wide"
+)
+
 @st.cache_data
 def load_data():
     query_ext = """
@@ -22,12 +28,6 @@ def load_data():
     return pd.DataFrame(result.mappings().all())
 
 df = load_data()
-
-st.set_page_config(
-    page_title="Sales Dashboard",
-    page_icon=":bar_chart:",
-    layout="wide"
-)
 
 st.title("Sales Dashboard")
 st.markdown(":violet-badge[:material/star: This dashboard provides an overview of the sales data.]")

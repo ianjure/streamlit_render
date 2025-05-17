@@ -26,7 +26,6 @@ def load_data():
     """
     result = connection.execute(text(query_ext))
     return pd.DataFrame(result.mappings().all())
-
 df = load_data()
 
 st.title("Sales Dashboard")
